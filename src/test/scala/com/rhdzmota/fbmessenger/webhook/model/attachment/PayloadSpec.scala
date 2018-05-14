@@ -4,6 +4,7 @@ import org.scalatest._
 
 import io.circe.parser.decode
 import io.circe.generic.auto._
+import io.circe.syntax._
 
 class PayloadSpec extends FlatSpec with Matchers {
 
@@ -12,7 +13,7 @@ class PayloadSpec extends FlatSpec with Matchers {
     val jsonString = "{\"url\": \"<ATTACHMENT_URL>\"}"
     decode[Url](jsonString).foreach(x => {
       x shouldBe url
-      x.toJson shouldBe url.toJson
+      x.asJson shouldBe url.asJson
     })
   }
 
@@ -22,7 +23,7 @@ class PayloadSpec extends FlatSpec with Matchers {
     val jsonString = "{\"coordinates\": {\"lat\": 0.0, \"long\": 0.0}}"
     decode[LocationPayload](jsonString).foreach(x => {
       x shouldBe locationPayload
-      x.toJson shouldBe locationPayload.toJson
+      x.asJson shouldBe locationPayload.asJson
     })
   }
 
