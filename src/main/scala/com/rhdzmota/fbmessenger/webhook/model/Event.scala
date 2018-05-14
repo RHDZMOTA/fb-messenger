@@ -1,5 +1,3 @@
 package com.rhdzmota.fbmessenger.webhook.model
 
-class Event {
-
-}
+case class Event(`object`: String, entry: List[Entry])
