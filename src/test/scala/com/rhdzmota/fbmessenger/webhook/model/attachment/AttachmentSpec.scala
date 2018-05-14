@@ -4,6 +4,8 @@ import org.scalatest._
 
 import io.circe.parser.decode
 import io.circe.generic.auto._
+import io.circe.syntax._
+
 
 class AttachmentSpec extends FlatSpec with Matchers {
 
@@ -13,7 +15,7 @@ class AttachmentSpec extends FlatSpec with Matchers {
     val jsonString = "{\"type\": \"image\", \"payload\": {\"url\": \"<ATTACHMENT_URL>\"}}"
     decode[SimpleAttachment](jsonString).foreach(x => {
       x shouldBe simpleAttachment
-      x.toJson shouldBe simpleAttachment.toJson
+      x.asJson shouldBe simpleAttachment.asJson
     })
   }
 
@@ -22,7 +24,7 @@ class AttachmentSpec extends FlatSpec with Matchers {
     val jsonString = "{\"type\": \"fallback\", \"payload\": null, \"title\": \"<TITLE>, \"URL\": \"<URL>\"}"
     decode[Fallback](jsonString).foreach(x => {
       x shouldBe fallback
-      x.toJson shouldBe fallback.toJson
+      x.asJson shouldBe fallback.asJson
     })
   }
 
@@ -33,7 +35,7 @@ class AttachmentSpec extends FlatSpec with Matchers {
     val jsonString = "{\"title\": \"<TITLE>\", \"url\": \"<URL>\", \"type\": \"location\", \"payload\": {\"coordinates\": {\"lat\": 0.0, \"long\": 0.0}}}"
     decode[Location](jsonString).foreach(x => {
       x shouldBe location
-      x.toJson shouldBe location.toJson
+      x.asJson shouldBe location.asJson
     })
   }
 
