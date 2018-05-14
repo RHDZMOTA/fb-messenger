@@ -8,7 +8,7 @@ import io.circe.syntax._
 
 class MessageDataSpec extends FlatSpec with Matchers {
 
-  "A Text message" should "jsonify correctly" in {
+  "A Text message data" should "jsonify correctly" in {
     val quickReply = QuickReply("DEVELOPER_DEFINED_PAYLOAD")
     val text = Text("<MID>", "<TEXT>", quickReply)
     val jsonString = "{\"mid\": \"<MID>\", \"text\": \"<TEXT>\", \"quick_reply\": {\"payload\": \"<DEVELOPER_DEFINED_PAYLOAD>\"}}"
@@ -19,7 +19,7 @@ class MessageDataSpec extends FlatSpec with Matchers {
     })
   }
 
-  "A message WithAttachment" should "jsonify correctly" in {
+  "A message data WithAttachment" should "jsonify correctly" in {
     val url = Url("<ATTACHMENT_URL>")
     val simpleAttachment = SimpleAttachment("image", Some(url))
     val withAttachment = WithAttachment("<MID>", 0, List(simpleAttachment))
@@ -30,7 +30,7 @@ class MessageDataSpec extends FlatSpec with Matchers {
     })
   }
 
-  "A message WithFallback" should "jsonify correctly" in {
+  "A message data WithFallback" should "jsonify correctly" in {
     val fallback = Fallback("fallback", None, "<TITLE>", "<URL>")
     val withFallback = WithFallback("<MID>", "<URL_SENT_BY_THE_USER>", List(fallback))
     val jsonString = "{\"mid\": \"<MID>\", \"text\": \"<URL_SENT_BY_THE_USER>\", \"attachments\": [{\"type\": \"fallback\", \"payload\": null, \"title\": \"<TITLE>\", \"URL\": \"<URL>\"}]"
@@ -40,7 +40,7 @@ class MessageDataSpec extends FlatSpec with Matchers {
     })
   }
 
-  "A message WithLocation" should "jsonify correctly" in {
+  "A message data WithLocation" should "jsonify correctly" in {
     val coordinates = Coordinates(0.0, 0.0)
     val locationPayload = LocationPayload(coordinates)
     val location = Location("<TITLE>", "<URL>", "location", Some(locationPayload))
@@ -51,6 +51,5 @@ class MessageDataSpec extends FlatSpec with Matchers {
       x.asJson shouldBe withLocation.asJson
     })
   }
-
 
 }
