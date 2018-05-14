@@ -23,9 +23,9 @@ class EntrySpec extends FlatSpec with Matchers {
       "}]" +
       "}" +
       "}]}"
-    decode[Message](jsonString).foreach(x => {
-      x shouldBe message
-      x.asJson shouldBe message.asJson
+    decode[Entry](jsonString).foreach(x => {
+      x shouldBe entry
+      x.asJson shouldBe entry.asJson
     })
   }
 
