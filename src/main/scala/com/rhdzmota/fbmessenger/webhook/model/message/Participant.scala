@@ -1,3 +1,3 @@
 package com.rhdzmota.fbmessenger.webhook.model.message
 
-case class Sender(id: String)
+case class Participant(id: String)

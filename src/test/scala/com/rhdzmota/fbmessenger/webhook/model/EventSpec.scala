@@ -1,7 +1,7 @@
 package com.rhdzmota.fbmessenger.webhook.model
 
 import com.rhdzmota.fbmessenger.webhook.model.attachment.{Coordinates, Location, LocationPayload}
-import com.rhdzmota.fbmessenger.webhook.model.message.{Message, Recipient, Sender, WithLocation}
+import com.rhdzmota.fbmessenger.webhook.model.message._
 import org.scalatest.{FlatSpec, Matchers}
 import io.circe.parser.decode
 import io.circe.generic.auto._
@@ -14,7 +14,7 @@ class EventSpec extends FlatSpec with Matchers {
     val locationPayload = LocationPayload(coordinates)
     val location = Location("<TITLE>", "<URL>", "location", Some(locationPayload))
     val withLocation = WithLocation("<MID>", 0, List(location))
-    val message = Message(Sender("<PSID>"), Recipient("<PAGE_ID>"), 0, withLocation)
+    val message = Message(Participant("<PSID>"), Participant("<PAGE_ID>"), 0, withLocation)
     val entry = Entry("<PAGE_ID>", 0, List(message))
     val event = Event("page", List(entry))
     val jsonString = "{\"object\": \"page\", \"entry\": [{\"id\": \"<PAGE_ID>\", \"time\": 0, \"messaging\": [{" +
