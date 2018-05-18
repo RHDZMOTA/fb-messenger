@@ -4,8 +4,9 @@ import com.rhdzmota.fbmessenger.webhook.model.attachment.{Coordinates, Location,
 import com.rhdzmota.fbmessenger.webhook.model.message._
 import org.scalatest.{FlatSpec, Matchers}
 import io.circe.parser.decode
-import io.circe.generic.auto._
 import io.circe.syntax._
+import com.rhdzmota.fbmessenger.webhook.model.Decoders._
+import com.rhdzmota.fbmessenger.webhook.model.Encoders._
 
 class EntrySpec extends FlatSpec with Matchers {
 
