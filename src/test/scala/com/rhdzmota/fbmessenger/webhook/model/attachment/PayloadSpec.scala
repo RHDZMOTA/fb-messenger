@@ -4,8 +4,8 @@ import org.scalatest._
 
 import io.circe.parser.decode
 import io.circe.syntax._
-import com.rhdzmota.fbmessenger.webhook.model.Decoders._
-import com.rhdzmota.fbmessenger.webhook.model.Encoders._
+import com.rhdzmota.fbmessenger.webhook.model.implicits.Encoders._
+import com.rhdzmota.fbmessenger.webhook.model.implicits.Decoders._
 
 class PayloadSpec extends FlatSpec with Matchers {
 

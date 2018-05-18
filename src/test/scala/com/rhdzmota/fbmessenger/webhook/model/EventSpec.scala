@@ -1,12 +1,14 @@
 package com.rhdzmota.fbmessenger.webhook.model
 
-import com.rhdzmota.fbmessenger.webhook.model.attachment.{Coordinates, Location, LocationPayload}
-import com.rhdzmota.fbmessenger.webhook.model.message._
 import org.scalatest.{FlatSpec, Matchers}
+
 import io.circe.parser.decode
 import io.circe.syntax._
-import com.rhdzmota.fbmessenger.webhook.model.Decoders._
-import com.rhdzmota.fbmessenger.webhook.model.Encoders._
+
+import com.rhdzmota.fbmessenger.webhook.model.attachment.{Coordinates, Location, LocationPayload}
+import com.rhdzmota.fbmessenger.webhook.model.implicits.Encoders._
+import com.rhdzmota.fbmessenger.webhook.model.implicits.Decoders._
+import com.rhdzmota.fbmessenger.webhook.model.message._
 
 class EventSpec extends FlatSpec with Matchers {
 
