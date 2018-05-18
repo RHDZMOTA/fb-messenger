@@ -7,6 +7,6 @@ sealed trait MessageData {
 }
 
 case class Text(mid: String, text: String, quickReply: QuickReply) extends MessageData
-case class WithAttachment(mid: String, seq: BigInt, attachments: List[SimpleAttachment]) extends MessageData
+case class WithAttachment(mid: String, seq: Int, attachments: List[SimpleAttachment]) extends MessageData
 case class WithFallback(mid: String, text: String, attachments: List[Fallback]) extends MessageData
-case class WithLocation(mid: String, seq: BigInt, attachments: List[Location]) extends MessageData
+case class WithLocation(mid: String, seq: Int, attachments: List[Location]) extends MessageData
