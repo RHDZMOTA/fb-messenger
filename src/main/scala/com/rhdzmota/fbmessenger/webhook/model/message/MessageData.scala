@@ -2,9 +2,6 @@ package com.rhdzmota.fbmessenger.webhook.model.message
 
 import com.rhdzmota.fbmessenger.webhook.model.attachment.{Fallback, Location, SimpleAttachment}
 
-
-
-
 sealed trait MessageData {
   def mid: String
 }

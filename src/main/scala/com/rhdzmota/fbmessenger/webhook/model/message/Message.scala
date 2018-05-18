@@ -1,3 +1,3 @@
 package com.rhdzmota.fbmessenger.webhook.model.message
 
-case class Message(sender: Sender, recipient: Recipient, timestamp: BigInt, message: MessageData)
+case class Message(sender: Participant, recipient: Participant, timestamp: BigInt, message: MessageData)

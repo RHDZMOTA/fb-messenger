@@ -3,9 +3,9 @@ package com.rhdzmota.fbmessenger.webhook.model.attachment
 import org.scalatest._
 
 import io.circe.parser.decode
-import io.circe.generic.auto._
 import io.circe.syntax._
-
+import com.rhdzmota.fbmessenger.webhook.model.implicits.Encoders._
+import com.rhdzmota.fbmessenger.webhook.model.implicits.Decoders._
 
 class AttachmentSpec extends FlatSpec with Matchers {
 
