@@ -21,16 +21,19 @@ class EventSpec extends FlatSpec with Matchers {
     val entry = Entry("<PAGE_ID>", 0, List(message))
     val event = Event("page", List(entry))
     val jsonString = "{\"object\": \"page\", \"entry\": [{\"id\": \"<PAGE_ID>\", \"time\": 0, \"messaging\": [{" +
-      "\"sender\": {\"id\": \"<PSID>\"}, \"recipient: {\"id\": \"<PAGE_ID>\"}, \"timestamp\": 0, \"message\": {" +
+      "\"sender\": {\"id\": \"<PSID>\"}, \"recipient\": {\"id\": \"<PAGE_ID>\"}, \"timestamp\": 0, \"message\": {" +
       "\"mid\": \"<MID>\", \"seq\": 0, \"attachments\": [{" +
       "\"title\": \"<TITLE>\", \"url\": \"<URL>\", \"type\": \"location\", \"payload\": {\"coordinates\": {\"lat\": 0.0, \"long\": 0.0}}" +
       "}]" +
       "}" +
       "}]}]}"
-    decode[Event](jsonString).foreach(x => {
-      x shouldBe event
-      x.asJson shouldBe event.asJson
-    })
-
+    val result = decode[Event](jsonString)
+    result shouldBe ('right)
+    result match {
+      case Left(error) =>
+      case Right(result) => 
+        result shouldBe event
+        result.asJson shouldBe event.asJson
+    } 
   }
 }
