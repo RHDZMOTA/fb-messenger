@@ -8,10 +8,14 @@ lazy val root = (project in file(".")).
       version      := "0.1.0-SNAPSHOT"
     )),
     name := "fb-messenger",
-    libraryDependencies ++= Seq(
-      "io.circe" %% "circe-core" % "0.9.3",
-      "io.circe" %% "circe-generic" % "0.9.3",
-      "io.circe" %% "circe-parser" % "0.9.3",
-      scalaTest % Test
-    )
+    libraryDependencies ++= {
+      val circeVersion = "0.9.3"
+      Seq(
+        "io.circe" %% "circe-core" % circeVersion,
+        "io.circe" %% "circe-generic" % circeVersion,
+        "io.circe" %% "circe-parser" % circeVersion,
+        "io.circe" %% "circe-generic-extras" % circeVersion,
+        scalaTest % Test
+      )
+    }
   )
