@@ -5,9 +5,11 @@ import com.rhdzmota.fbmessenger.webhook.model.message._
 import com.rhdzmota.fbmessenger.webhook.model.attachment._
 
 import io.circe.Encoder
-import io.circe.generic.semiauto.deriveEncoder
+import io.circe.generic.extras.Configuration
+import io.circe.generic.extras.semiauto.deriveEncoder
 
 object Encoders {
+  implicit val customConfig: Configuration = Configuration.default.withSnakeCaseMemberNames.withDefaults
   implicit val encodeLocationPayload: Encoder[LocationPayload] = deriveEncoder[LocationPayload]
   implicit val encodeUrl: Encoder[Url] = deriveEncoder[Url]
   implicit val encodeAbsent: Encoder[Absent] = deriveEncoder[Absent]

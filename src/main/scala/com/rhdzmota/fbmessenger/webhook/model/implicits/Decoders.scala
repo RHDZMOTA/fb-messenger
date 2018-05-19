@@ -5,11 +5,13 @@ import com.rhdzmota.fbmessenger.webhook.model.message._
 import com.rhdzmota.fbmessenger.webhook.model.attachment._
 
 import io.circe.Decoder
-import io.circe.generic.semiauto.deriveDecoder
+import io.circe.generic.extras.Configuration
+import io.circe.generic.extras.semiauto.deriveDecoder
 
 object Decoders {
-  implicit val decodeUrl: Decoder[Url] = deriveDecoder[Url]
+  implicit val customConfig: Configuration = Configuration.default.withSnakeCaseMemberNames.withDefaults
   implicit val decodeLocationPayload: Decoder[LocationPayload] = deriveDecoder[LocationPayload]
+  implicit val decodeUrl: Decoder[Url] = deriveDecoder[Url]
   implicit val decodeAbsent: Decoder[Absent] = deriveDecoder[Absent]
   implicit val decodeCoordinates: Decoder[Coordinates] = deriveDecoder[Coordinates]
   implicit val decodeSimpleAttachment: Decoder[SimpleAttachment] = deriveDecoder[SimpleAttachment]
