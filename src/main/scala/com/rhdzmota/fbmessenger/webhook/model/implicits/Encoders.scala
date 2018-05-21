@@ -26,7 +26,8 @@ object Encoders {
   }
   // ATTACHMENT
   implicit val encodeSimpleAttachment: Encoder[SimpleAttachment] = deriveEncoder[SimpleAttachment]
-  implicit val encodeFallback: Encoder[Fallback] = deriveEncoder[Fallback]
+  implicit val encodeFallback: Encoder[Fallback] =
+    Encoder.forProduct4("type", "payload", "title", "URL")(x => (x.`type`, x.payload, x.title, x.URL))//deriveEncoder[Fallback]
   implicit val encodeLocation: Encoder[Location] = deriveEncoder[Location]
   implicit val encodeAttachment: Encoder[Attachment] = Encoder.instance {
     case location @ Location(_, _, _, _) => location.asJson
