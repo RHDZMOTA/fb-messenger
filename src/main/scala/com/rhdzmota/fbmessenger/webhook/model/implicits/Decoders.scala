@@ -23,7 +23,8 @@ object Decoders {
       .or(Decoder[Absent].map[Payload](identity))
   // ATTACHMENT
   implicit val decodeSimpleAttachment: Decoder[SimpleAttachment] = deriveDecoder[SimpleAttachment]
-  implicit val decodeFallback: Decoder[Fallback] = deriveDecoder[Fallback]
+  implicit val decodeFallback: Decoder[Fallback] =
+    Decoder.forProduct4("type", "payload", "title", "URL")(Fallback.apply)
   implicit val decodeLocation: Decoder[Location] = deriveDecoder[Location]
   implicit val decodeAttachment: Decoder[Attachment] =
     Decoder[Location].map[Attachment](identity)
