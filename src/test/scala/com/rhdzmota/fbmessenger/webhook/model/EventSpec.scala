@@ -28,7 +28,7 @@ class EventSpec extends FlatSpec with Matchers {
       "}" +
       "}]}]}"
     val result = decode[Event](jsonString)
-    result shouldBe ('right)
+    result shouldBe 'right
     result match {
       case Left(error) =>
       case Right(result) => 
