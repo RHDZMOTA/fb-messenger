@@ -43,7 +43,19 @@ class MessageDataSpec extends FlatSpec with Matchers {
   "A message data WithFallback" should "jsonify correctly" in {
     val fallback = Fallback("fallback", None, "<TITLE>", "<URL>")
     val withFallback = WithFallback("<MID>", "<URL_SENT_BY_THE_USER>", List(fallback))
-    val jsonString = "{\"mid\": \"<MID>\", \"text\": \"<URL_SENT_BY_THE_USER>\", \"attachments\": [{\"type\": \"fallback\", \"payload\": null, \"title\": \"<TITLE>\", \"URL\": \"<URL>\"}]"
+    val jsonString =
+      """{
+        |  "mid": "<MID>",
+        |  "text": "<URL_SENT_BY_THE_USER>",
+        |  "attachments": [
+        |    {
+        |      "type": "fallback",
+        |      "payload": null,
+        |      "title": "<TITLE>",
+        |      "URL": "<URL>"
+        |    }
+        |  ]
+        |}""".stripMargin
     val result = decode[WithFallback](jsonString)
     result shouldBe 'right
     result match {
