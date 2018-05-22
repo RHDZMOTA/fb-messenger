@@ -13,7 +13,7 @@ class MessageDataSpec extends FlatSpec with Matchers {
 
   "A Text message data" should "jsonify correctly" in {
     val quickReply = QuickReply("<DEVELOPER_DEFINED_PAYLOAD>")
-    val text = Text("<MID>", "<TEXT>", quickReply)
+    val text = Text("<MID>", "<TEXT>", Some(quickReply))
     val jsonString = "{\"mid\": \"<MID>\", \"text\": \"<TEXT>\", \"quick_reply\": {\"payload\": \"<DEVELOPER_DEFINED_PAYLOAD>\"}}"
     val result = decode[Text](jsonString)
     result shouldBe 'right

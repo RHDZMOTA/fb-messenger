@@ -65,8 +65,8 @@ class EntrySpec extends FlatSpec with Matchers {
   "An Entry with a multiple text messages" should "jsonify correcty" in {
 
     val quickReply = QuickReply("<DEVELOPER_DEFINED_PAYLOAD>")
-    val firstText  = Text("<MID>", "<TEXT-1>", quickReply)
-    val secondText = Text("<MID>", "<TEXT-2>", quickReply)
+    val firstText  = Text("<MID>", "<TEXT-1>", Some(quickReply))
+    val secondText = Text("<MID>", "<TEXT-2>", Some(quickReply))
     val firstMessage  = Message(Participant("<PSID>"), Participant("<PAGE_ID>"), 0, firstText)
     val secondMessage = Message(Participant("<PSID>"), Participant("<PAGE_ID>"), 1, secondText)
     val entry = Entry("<PAGE_ID>", 0, List(firstMessage, secondMessage))

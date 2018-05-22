@@ -13,7 +13,7 @@ class MessageSpec extends FlatSpec with Matchers {
   
   "A Message with Text attachment" should "jsonify correctly" in {
     val quickReply = QuickReply("<DEVELOPER_DEFINED_PAYLOAD>")
-    val text = Text("<MID>", "<TEXT>", quickReply)
+    val text = Text("<MID>", "<TEXT>", Some(quickReply))
     val message = Message(Participant("<PSID>"), Participant("<PAGE_ID>"), 0, text)
     val jsonString =
       """{
