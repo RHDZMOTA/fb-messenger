@@ -1,5 +1,7 @@
 package com.rhdzmota.fbmessenger.send.model.attachment
 
+import com.rhdzmota.fbmessenger.send.model.attachment.payload.Payload
+
 case class Attachment(`type`: String, payload: Payload)
 
 object Attachment {
