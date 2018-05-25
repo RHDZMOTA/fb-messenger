@@ -15,7 +15,7 @@ class ReplySpec extends FlatSpec with Matchers {
 
   "A Reply WithMessage and without quick replies" should "encode/decode correctly" in {
     val recipient = Recipient("<PSID>")
-    val withText = WithText("<TEXT-1>")
+    val withText = WithText("<TEXT-1>", None)
     val withMessage = Reply.withDefaultConfigMessage(recipient, withText)
     val jsonString =
       """{
@@ -24,8 +24,7 @@ class ReplySpec extends FlatSpec with Matchers {
         |    "id": "<PSID>"
         |  },
         |  "message": {
-        |    "text": "<TEXT-1>",
-        |    "quick_replies": []
+        |    "text": "<TEXT-1>"
         |  },
         |  "notification_type": "REGULAR"
         |}""".stripMargin
@@ -42,7 +41,7 @@ class ReplySpec extends FlatSpec with Matchers {
   "A Reply WithMessage and with one quick replies (text)" should "encode/decode correctly" in {
     val recipient = Recipient("<PSID>")
     val quickReply = Text("text", "<TITLE>", "<PAYLOAD>", None)
-    val withText = WithText("<TEXT-1>", List(quickReply))
+    val withText = WithText("<TEXT-1>", Some(List(quickReply)))
     val withMessage = Reply.withDefaultConfigMessage(recipient, withText)
     val jsonString =
       """{

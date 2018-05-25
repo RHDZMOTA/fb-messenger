@@ -1,6 +1,7 @@
 package com.rhdzmota.fbmessenger.send.model.reply
 
-import com.rhdzmota.fbmessenger.send.model.message.Message
+import com.rhdzmota.fbmessenger.send.model.message._
+import com.rhdzmota.fbmessenger.send.model.message.quickreply.QuickReply
 
 
 sealed trait Reply {
@@ -31,6 +32,12 @@ object Reply {
         Some(WithMessage(validMessageType, recipient, message, validNotificationType))
       case _ => None
     }
+
+  def withTextMessage(recipient: Recipient, text: String, quickReplies: Option[List[QuickReply]] = None,
+                      messageType: String = responseLabel, notificationType: String = regularLabel): Option[WithMessage] = for {
+    withText        <- Message.withText(text, quickReplies)
+    withTextMessage <- Reply.withMessage(recipient, withText, messageType, notificationType)
+  } yield withTextMessage
 
   def withAction(recipient: Recipient, senderAction: String): Option[WithAction] = senderAction match {
     case validSenderAction if validSenderActions contains validSenderAction => Some(WithAction(recipient, validSenderAction))
